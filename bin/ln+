@@ -67,20 +67,28 @@ def parse_options(argv):
         help="make source_file relative to target_file"
     )
     parser.add_option(
-        "-u", "--update", dest="update", action="store_true",
-        help="if target_file is a symbolic link, remove it before creating the symbolic link"
-    )
-    parser.add_option(
-        "-c", "--convert", dest="convert", action="store_true",
-        help="if target_file is identical to source_file, remove it before creating the symbolic link"
-    )
-    parser.add_option(
         "-p", "--make-parents", dest="parents", action="store_true",
         help="make parents of target_file if they don't exist"
     )
     parser.add_option(
+        "-u", "--update", dest="update", action="store_true",
+        help="if target_file is a symbolic link, remove it before creating the symbolic link"
+    )
+    parser.add_option(
+        "-c", "--convert", "--linkify", dest="linkify", action="store_true",
+        help="if target_file is identical to source_file, remove it before creating the symbolic link"
+    )
+    parser.add_option(
+        "-C", "--un-convert", "--un-linkify", dest="unlinkify", action="store_true",
+        help="if target_file is a symlink, replace it with a copy of its contents"
+    )
+    parser.add_option(
         "-w", "--swap", dest="swap", action="store_true",
         help="if target_file exists and source_file does not, move source_file to target_file before creating the symbolic link"
+    )
+    parser.add_option(
+        "-p", "--preserve-metadata", dest="preserve", action="store_true",
+        help="when replacing files with symbolic links and vice versa, preserve the permissions and timestamp"
     )
     parser.add_option(
         "--target-dir", dest="target_dir",
